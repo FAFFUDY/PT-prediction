@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { PredictionService } from '../app.service';
 
 @Component({
   selector: 'app-period-tracker',
@@ -18,31 +19,22 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   ]
 })
 export class PeriodTrackerComponent implements OnInit {
-  periodForm: FormGroup;
-  periods: any[] = [];
-  selectedDate: Date | null = null;
-  
-  constructor(private fb: FormBuilder, private datePipe: DatePipe) {
-    this.periodForm = this.fb.group({
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required]
-    });
-  }
-
   ngOnInit(): void {}
+  
+  lastPeriodDate: string = '';
+  cycleLength: number = 28;
+  predictedDate: string | null = null;
 
-  onSubmit(): void {
-    if (this.periodForm.valid) {
-      const period = {
-        startDate: this.datePipe.transform(this.periodForm.value.startDate, 'yyyy-MM-dd'),
-        endDate: this.datePipe.transform(this.periodForm.value.endDate, 'yyyy-MM-dd')
-      };
-      this.periods.push(period);
-      this.periodForm.reset();
-    }
-  }
+  constructor(private predictionService: PredictionService) {}
 
-  onDateSelect(date: Date): void {
-    this.selectedDate = date;
+  predict() {
+    this.predictionService.predictNextPeriod(this.lastPeriodDate, this.cycleLength).subscribe(
+      (response: any) => {
+        this.predictedDate = response;
+      },
+      (error) => {
+        console.error('Error predicting next period:', error);
+      }
+    );
   }
 }

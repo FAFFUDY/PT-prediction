@@ -1,33 +1,105 @@
-.period-tracker-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
-  
-    .period-form {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin-bottom: 20px;
-  
-      mat-form-field {
-        width: 100%;
-      }
-    }
-  
-    .calendar-view {
-      margin-bottom: 20px;
-    }
-  
-    .period-list {
-      ul {
-        list-style-type: none;
-        padding: 0;
-  
-        li {
-          padding: 8px;
-          border-bottom: 1px solid #ccc;
-        }
-      }
-    }
+/* Container Styling */
+.container {
+  text-align: center;
+  padding: 40px;
+  background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  margin: 50px auto;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Title Styling */
+h1 {
+  color: #fff;
+  font-size: 2.5em;
+  margin-bottom: 30px;
+  font-family: 'Poppins', sans-serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Form Group Styling */
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #fff;
+  font-size: 1.1em;
+  font-family: 'Poppins', sans-serif;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Button Styling */
+.predict-button {
+  background-color: #ff6f61;
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.predict-button:hover {
+  background-color: #ff3b2f;
+  transform: translateY(-2px);
+}
+
+.predict-button:active {
+  transform: translateY(0);
+}
+
+/* Result Styling */
+.result {
+  margin-top: 30px;
+  color: #fff;
+  font-size: 1.2em;
+  font-family: 'Poppins', sans-serif;
+  animation: slideIn 0.5s ease-in-out;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
